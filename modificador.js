@@ -1,31 +1,40 @@
-function fnCapitalizar(vetor) {
-    var modificado = [];
-
-    for(let i in vetor){
-        var letraInicial = vetor[i].charAt(0).toLocaleUpperCase();
-        var restoTexto = vetor[i].slice(1);
-        var resultado = letraInicial+restoTexto;
-        modificado[i] = resultado;
+function fnCapitalizar(colecao, attr){
+    if (colecao.length > 0){
+        if (typeof colecao[0] == 'object' && attr){
+            colecao.map(item => item[attr] = item[attr].charAt(0).toUpperCase() + item[attr].slice(1));
+        }else{
+            colecao.map(item => item = item.charAt(0).toUpperCase() + item.slice(1));
+        }
+        
+        return colecao;
     }
-    return modificado; 
-}
-   
-function fnOrdenar(vetor){
-        return vetor.sort(function (a,b) {
-        return a.localeCompare(b);
-     });
-       
 }
 
-function fnCaixaAlta(vetor) {
-    var modificado= [];
-    for(let i in vetor){
-        modificado[i] = vetor[i].toLocaleUpperCase();
+function fnCaixaAlta(colecao, attr){
+    if (colecao.length > 0){
+        if (typeof colecao[0] == 'object' && attr){
+            colecao.map(item => item[attr] = item[attr].toUpperCase());
+        }else{
+            colecao.map(item => item = item.toUpperCase());
+        }
+        
+        return colecao;
     }
-    return modificado;
 }
 
-
+function fnOrdenar(colecao, attr){    
+    return attr ?
+        colecao.sort(function(a,b){
+            return typeof a[attr] == 'number' ?
+                a[attr] - b[attr] :
+                a[attr].localeCompare(b[attr])
+        }):
+        colecao.sort(function(a,b){
+            return typeof a == 'number' ?
+                a - b :
+                a.localeCompare(b)
+        });
+}
 
 export default {
     capitalizar: fnCapitalizar,

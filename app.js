@@ -1,13 +1,9 @@
 import modificador from './modificador.js';
 import ingredientes from './ingredientes.js';
-import bebidas from './bebidas.js';
-
-
-console.log(bebidas);
 
 
 
-
+   
 
 /*  var ingredientes = ['mel', 'água', 'sal', 'mostarda'];
     var resultadoCapitalizao = modificador.capitalizar(ingredientes);
